@@ -38,6 +38,7 @@
   with_items:
     - 80
     - 443
+    - 873
 
 - name: Bastion external access security group
   os_security_group:
