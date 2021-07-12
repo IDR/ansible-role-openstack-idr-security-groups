@@ -84,4 +84,4 @@
   with_items:
     - "tcp"
     - "udp"
-  when: idr_security_nfs_ip != ""
+  when: idr_security_nfs_ip | length > 0
