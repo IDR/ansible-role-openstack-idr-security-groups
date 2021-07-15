@@ -67,3 +67,21 @@
     state: present
   with_items:
     - 22
+
+- name: NFS internal access security group
+  os_security_group:
+    description: Internal access to NFS servers (managed by Ansible)
+    name: idr-nfs-internal
+    state: present
+
+- name: NFS internal access security group rules
+  os_security_group_rule:
+    direction: ingress
+    protocol: "{{ item }}"
+    remote_ip_prefix: "{{ idr_security_nfs_ip }}"
+    security_group: idr-nfs-internal
+    state: present
+  with_items:
+    - "tcp"
+    - "udp"
+  when: idr_security_nfs_ip | length > 0
